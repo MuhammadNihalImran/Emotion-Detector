@@ -90,7 +90,8 @@ if st.button("Detect Emotion"):
         st.markdown(f"""
         <div style="background:{COLOR_MAP[emotion]};border:1px solid {BORDER_MAP[emotion]};border-radius:12px;padding:24px;text-align:center;margin-top:16px;">
             <h1 style="color:#000000; font-size:2rem; font-weight:700; margin:0;">{EMOJI_MAP[emotion]} {emotion.capitalize()}</h1>
-            <p style="color:#000000; font-size:1rem; margin-top:6px;">Confidence: {confidence}%</p>
+<p style="color:#000000 !important; font-size:1rem; 
+margin-top:6px;">Confidence: {confidence}%</p>
         </div>
         """, unsafe_allow_html=True)
 
