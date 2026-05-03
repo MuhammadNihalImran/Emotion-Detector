@@ -10,8 +10,21 @@ st.set_page_config(
 )
 
 # ── Styling ───────────────────────────────────────────
-with open("styles/style.css", "r", encoding="utf-8") as css_file:
-    st.markdown(f"<style>{css_file.read()}</style>", unsafe_allow_html=True)
+css = open("styles/style.css", "r", encoding="utf-8").read()
+# Ensure CSS is injected before any other Streamlit components render
+st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
+
+# Also explicitly hide Streamlit default menu/header/footer for a clean UI
+st.markdown(
+    """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 # ── Load Model ────────────────────────────────────────
 @st.cache_resource
