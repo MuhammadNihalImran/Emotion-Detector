@@ -29,7 +29,7 @@ html, body, .streamlit-container {
 }
 
 .emotion-label { font-size: 1.9rem; font-weight: 700; margin: 0; color: #000000 !important; }
-.confidence { font-size: 0.95rem; color: #000000 !important; margin-top: 6px; }
+.confidence { font-size: 0.95rem; color: #000000; margin-top: 6px; }
 
 .recommendation-box {
         padding: 18px;
@@ -96,7 +96,7 @@ h1 {
 }
 
 p, .st-emotion-cache-16idsys p {
-    color: #B0B8C1 !important;
+    color: #B0B8C1;
 }
 
 h2, h3, h4, label, .stMarkdown {
