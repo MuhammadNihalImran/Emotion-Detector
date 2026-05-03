@@ -64,7 +64,7 @@ RECOMMENDATION_MAP = {
 }
 
 # ── UI ────────────────────────────────────────────────
-st.title("🎭 Emotion Detector")
+st.markdown('<h1>🎭 Emotion Detector</h1>', unsafe_allow_html=True)
 st.caption("Enter any text and the model will detect the underlying emotion.")
 st.divider()
 

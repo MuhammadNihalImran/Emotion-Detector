@@ -71,3 +71,17 @@ textarea, .stTextArea>div>div>textarea {
 footer { visibility: hidden; }
 header { visibility: hidden; }
 
+/* Improve text visibility on dark background */
+h1 {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+}
+
+p, .st-emotion-cache-16idsys p {
+    color: #B0B8C1 !important;
+}
+
+h2, h3, h4, label, .stMarkdown {
+    color: #FFFFFF !important;
+}
+
