@@ -28,8 +28,8 @@ html, body, .streamlit-container {
     background: var(--card);
 }
 
-.emotion-label { font-size: 1.9rem; font-weight: 700; margin: 0; color: var(--text); }
-.confidence { font-size: 0.95rem; color: var(--muted-text); margin-top: 6px; }
+.emotion-label { font-size: 1.9rem; font-weight: 700; margin: 0; color: #000000 !important; }
+.confidence { font-size: 0.95rem; color: #000000 !important; margin-top: 6px; }
 
 .recommendation-box {
         padding: 18px;
