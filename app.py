@@ -88,9 +88,9 @@ if st.button("Detect Emotion"):
 
         # Result Box
         st.markdown(f"""
-        <div class="result-box" style="background:{COLOR_MAP[emotion]};border-color:{BORDER_MAP[emotion]};">
-            <p class="emotion-label">{EMOJI_MAP[emotion]} {emotion.capitalize()}</p>
-            <p class="confidence">Confidence: {confidence}%</p>
+        <div style="background:{COLOR_MAP[emotion]};border:1px solid {BORDER_MAP[emotion]};border-radius:12px;padding:24px;text-align:center;margin-top:16px;">
+            <p style="color:#1A1A2E;font-size:2rem;font-weight:700;margin:0;">{EMOJI_MAP[emotion]} {emotion.capitalize()}</p>
+            <p style="color:#374151;font-size:1rem;margin-top:6px;">Confidence: {confidence}%</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -100,7 +100,7 @@ if st.button("Detect Emotion"):
             recommendation_text = "Confidence is low. Try rephrasing your input for a better result."
 
         st.markdown(f"""
-        <div class="recommendation-box">
+        <div style="background:#1E2330;border:1px solid #00BFFF;border-radius:12px;padding:20px;color:#FFFFFF;font-size:1rem;line-height:1.6;">
             {recommendation_text}
         </div>
         """, unsafe_allow_html=True)
