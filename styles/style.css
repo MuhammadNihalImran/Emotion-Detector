@@ -91,8 +91,8 @@ header { visibility: hidden; }
 
 /* Improve text visibility on dark background */
 h1 {
-    color: #FFFFFF !important;
-    font-weight: 700 !important;
+    color: #FFFFFF;
+    font-weight: 700;
 }
 
 p, .st-emotion-cache-16idsys p {
