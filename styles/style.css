@@ -42,12 +42,30 @@ html, body, .streamlit-container {
 }
 
 /* Text area input styling */
-textarea, .stTextArea>div>div>textarea {
-    background: #0b1220 !important;
-    color: var(--text) !important;
+textarea, .stTextArea>div>div>textarea, .stTextArea textarea {
+    background-color: #0b1220 !important;
+    color: #FFFFFF !important; /* ensure typed text is visible */
+    caret-color: #00BFFF !important;
     border: 1px solid rgba(255,255,255,0.06) !important;
     border-radius: 8px !important;
     padding: 12px !important;
+}
+
+/* Explicit rules requested for Streamlit textarea elements */
+.stTextArea textarea, textarea {
+    color: #FFFFFF !important;
+    background-color: #1E2330 !important;
+    caret-color: #00BFFF !important;
+}
+
+.stTextArea textarea::placeholder, textarea::placeholder {
+    color: #6B7280 !important;
+}
+
+.stTextArea textarea:focus, textarea:focus, .stTextArea>div>div>textarea:focus {
+    border-color: #00BFFF !important;
+    outline: none !important;
+    box-shadow: 0 0 0 4px rgba(0,191,255,0.06) !important;
 }
 
 /* Button styling */
