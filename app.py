@@ -82,25 +82,44 @@ if st.button("Detect Emotion"):
         with st.spinner("Analyzing..."):
             cleaned = clean_text(user_input)
             vectorized = tfidf.transform([cleaned])
-            emotion = model.predict(vectorized)[0]
             proba = model.predict_proba(vectorized)[0]
-            confidence = round(max(proba) * 100, 1)
+            classes = model.classes_
+            
+            # Combine classes with their probabilities
+            emotion_probs = [{'emotion': cls, 'probability': prob * 100} for cls, prob in zip(classes, proba)]
+            
+            # 1. Filter out emotions with probability <= 40%
+            filtered_emotions = [ep for ep in emotion_probs if ep['probability'] > 40.0]
+            
+            # 2. Sort remaining emotions from highest to lowest probability
+            sorted_emotions = sorted(filtered_emotions, key=lambda x: x['probability'], reverse=True)
 
         # Result Box
-        st.markdown(f"""
-        <div style="background:{COLOR_MAP[emotion]};border:1px solid {BORDER_MAP[emotion]};border-radius:12px;padding:24px;text-align:center;margin-top:16px;">
-            <h1 style="color:#000000; font-size:2rem; font-weight:700; margin:0;">{EMOJI_MAP[emotion]} {emotion.capitalize()}</h1>
-<span style="display:block;color:#000000;font-size:1rem;
-margin-top:6px;">Confidence: {confidence}%</span>
-        """, unsafe_allow_html=True)
+        if not sorted_emotions:
+            st.markdown(f"""
+            <div style="background:#E3F2FD;border:1px solid #1565C0;border-radius:12px;padding:24px;text-align:center;margin-top:16px;">
+                <h1 style="color:#000000; font-size:1.5rem; font-weight:700; margin:0;">No strong emotion detected</h1>
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.markdown("### Detected Emotions:")
+            
+            for ep in sorted_emotions:
+                emo = ep['emotion']
+                conf = round(ep['probability'], 1)
+                st.markdown(f"""
+                <div style="background:{COLOR_MAP[emo]};border:1px solid {BORDER_MAP[emo]};border-radius:12px;padding:16px;margin-top:12px;">
+                    <h2 style="color:#000000; font-size:1.4rem; margin:0; font-weight:600;">{EMOJI_MAP[emo]} {emo.capitalize()}: {conf}%</h2>
+                </div>
+                """, unsafe_allow_html=True)
 
-        st.markdown("### Recommendation")
-        recommendation_text = RECOMMENDATION_MAP.get(emotion, "Take a moment and reflect on how you feel.")
-        if confidence < 70:
-            recommendation_text = "Confidence is low. Try rephrasing your input for a better result."
-
-        st.markdown(f"""
-        <div style="background:#1E2330;border:1px solid #00BFFF;border-radius:12px;padding:20px;color:#FFFFFF;font-size:1rem;line-height:1.6;">
-            {recommendation_text}
-        </div>
-        """, unsafe_allow_html=True)
+            # Keep recommendation for the top emotion
+            top_emotion = sorted_emotions[0]['emotion']
+            st.markdown("### Recommendation")
+            recommendation_text = RECOMMENDATION_MAP.get(top_emotion, "Take a moment and reflect on how you feel.")
+            
+            st.markdown(f"""
+            <div style="background:#1E2330;border:1px solid #00BFFF;border-radius:12px;padding:20px;color:#FFFFFF;font-size:1rem;line-height:1.6;">
+                {recommendation_text}
+            </div>
+            """, unsafe_allow_html=True)
