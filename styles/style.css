@@ -1,16 +1,18 @@
-.main { max-width: 860px; margin: 0 auto; padding: 32px; }
 :root {
-    --bg: #0f1724; /* deep charcoal/navy */
-    --card: #111827; /* slightly lighter than background */
+    --bg: #0f1724;
+    --card: #111827;
     --muted-card: #0b1220;
-    --text: #f8fafc; /* off-white */
+    --text: #f8fafc;
     --muted-text: #cbd5e1;
-    --accent: #06b6d4; /* teal */
-    --border: rgba(255,255,255,0.06);
+    --accent: #06b6d4;
+    --border: rgba(255, 255, 255, 0.06);
     --radius: 12px;
 }
 
-html, body, .streamlit-container {
+/* ── Base ── */
+html,
+body,
+.streamlit-container {
     background: var(--bg) !important;
     color: var(--text) !important;
 }
@@ -19,6 +21,86 @@ html, body, .streamlit-container {
     background: transparent !important;
 }
 
+.block-container {
+    padding-top: 1rem !important;
+    max-width: 860px !important;
+    margin: 0 auto !important;
+}
+
+/* ── Typography ── */
+h1,
+h2,
+h3,
+h4 {
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+p {
+    color: #B0B8C1;
+}
+
+/* ── App Title ── */
+.app-title {
+    color: #FFFFFF !important;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* ── Divider gap ── */
+hr {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* ── Caption ── */
+.stMarkdown p,
+.stText,
+.stCaption {
+    color: var(--muted-text) !important;
+}
+
+/* ── Textarea ── */
+textarea,
+.stTextArea>div>div>textarea,
+.stTextArea textarea {
+    background-color: #1E2330 !important;
+    color: #FFFFFF !important;
+    caret-color: #00BFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 8px !important;
+    padding: 12px !important;
+}
+
+.stTextArea textarea::placeholder,
+textarea::placeholder {
+    color: #6B7280 !important;
+}
+
+.stTextArea textarea:focus,
+textarea:focus {
+    border-color: #00BFFF !important;
+    outline: none !important;
+    box-shadow: 0 0 0 4px rgba(0, 191, 255, 0.06) !important;
+}
+
+/* ── Button ── */
+.stButton>button {
+    background: var(--accent) !important;
+    color: #021014 !important;
+    border: none !important;
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+}
+
+.stButton>button:active {
+    transform: translateY(1px);
+}
+
+/* ── Emotion Cards ── */
 .result-box {
     padding: 22px;
     border-radius: var(--radius);
@@ -28,78 +110,39 @@ html, body, .streamlit-container {
     background: var(--card);
 }
 
-.emotion-label { font-size: 1.9rem; font-weight: 700; margin: 0; color: #000000 !important; }
-.confidence { font-size: 0.95rem; color: #000000; margin-top: 6px; }
-
-.recommendation-box {
-        padding: 18px;
-        border-radius: var(--radius);
-        margin-top: 12px;
-        border: 1px solid var(--border);
-        background: var(--muted-card);
-        color: var(--text);
-        line-height: 1.5;
-}
-
-/* Text area input styling */
-textarea, .stTextArea>div>div>textarea, .stTextArea textarea {
-    background-color: #0b1220 !important;
-    color: #FFFFFF !important; /* ensure typed text is visible */
-    caret-color: #00BFFF !important;
-    border: 1px solid rgba(255,255,255,0.06) !important;
-    border-radius: 8px !important;
-    padding: 12px !important;
-}
-
-/* Explicit rules requested for Streamlit textarea elements */
-.stTextArea textarea, textarea {
-    color: #FFFFFF !important;
-    background-color: #1E2330 !important;
-    caret-color: #00BFFF !important;
-}
-
-.stTextArea textarea::placeholder, textarea::placeholder {
-    color: #6B7280 !important;
-}
-
-.stTextArea textarea:focus, textarea:focus, .stTextArea>div>div>textarea:focus {
-    border-color: #00BFFF !important;
-    outline: none !important;
-    box-shadow: 0 0 0 4px rgba(0,191,255,0.06) !important;
-}
-
-/* Button styling */
-.stButton>button {
-    background: var(--accent) !important;
-    color: #021014 !important;
-    border: none !important;
-    padding: 8px 16px !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-}
-.stButton>button:active { transform: translateY(1px); }
-
-/* Make labels and captions more visible */
-.stMarkdown p, .stText, .stCaption {
-    color: var(--muted-text) !important;
-}
-
-/* Hide default Streamlit header/footer if app-level CSS doesn't apply */
-#MainMenu { visibility: hidden; }
-footer { visibility: hidden; }
-header { visibility: hidden; }
-
-/* Improve text visibility on dark background */
-h1 {
-    color: #FFFFFF;
+.emotion-label {
+    font-size: 1.9rem;
     font-weight: 700;
+    margin: 0;
+    color: #000000 !important;
 }
 
-p, .st-emotion-cache-16idsys p {
-    color: #B0B8C1;
+.confidence {
+    font-size: 0.95rem;
+    color: #000000 !important;
+    margin-top: 6px;
 }
 
-h2, h3, h4, label, .stMarkdown {
-    color: #FFFFFF !important;
+/* ── Recommendation ── */
+.recommendation-box {
+    padding: 18px;
+    border-radius: var(--radius);
+    margin-top: 12px;
+    border: 1px solid var(--border);
+    background: var(--muted-card);
+    color: var(--text);
+    line-height: 1.5;
 }
 
+/* ── Hide Streamlit UI ── */
+#MainMenu {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
+
+header {
+    visibility: hidden;
+}

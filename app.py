@@ -64,7 +64,7 @@ RECOMMENDATION_MAP = {
 }
 
 # ── UI ────────────────────────────────────────────────
-st.markdown('<h1>🎭 Emotion Detector</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="app-title">🎭 Emotion Detector</h1>', unsafe_allow_html=True)
 st.caption("Enter any text and the model will detect the underlying emotion.")
 st.divider()
 
@@ -84,18 +84,17 @@ if st.button("Detect Emotion"):
             vectorized = tfidf.transform([cleaned])
             proba = model.predict_proba(vectorized)[0]
             classes = model.classes_
-            
-            # Combine classes with their probabilities
-            emotion_probs = [{'emotion': cls, 'probability': prob * 100} for cls, prob in zip(classes, proba)]
-            
-            # Top 3 emotions dikhao
-            sorted_emotions = sorted(emotion_probs, key=lambda x: x['probability'], reverse=True)[:3]
+            emotion_probs = [{'emotion': cls, 'probability': round(prob * 100, 1)}
+                             for cls, prob in zip(classes, proba)]
+            sorted_emotions = sorted(emotion_probs, 
+                                     key=lambda x: x['probability'], 
+                                     reverse=True)[:3]
 
         # Result Box
         if not sorted_emotions:
             st.markdown(f"""
             <div style="background:#E3F2FD;border:1px solid #1565C0;border-radius:12px;padding:24px;text-align:center;margin-top:16px;">
-                <h1 style="color:#1A1A1A !important; font-size:1.5rem; font-weight:700; margin:0;">No strong emotion detected</h1>
+                <h1 style="color:#000000; font-size:1.5rem; font-weight:700; margin:0;">No strong emotion detected</h1>
             </div>
             """, unsafe_allow_html=True)
         else:
@@ -113,10 +112,7 @@ if st.button("Detect Emotion"):
                             display:flex;
                             align-items:center;
                             gap:10px;">
-                    <h2 style="color:#1A1A1A !important; 
-                               font-size:1.4rem; 
-                               margin:0; 
-                               font-weight:700;">{EMOJI_MAP[emo]} {emo.capitalize()}: {conf}%</h2>
+                    <span style="color:#000000 !important; font-size:1.4rem; font-weight:700; display:block;">{EMOJI_MAP[emo]} {emo.capitalize()}: {conf}%</h2>
                 </div>
                 """, unsafe_allow_html=True)
 
