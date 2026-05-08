@@ -88,11 +88,8 @@ if st.button("Detect Emotion"):
             # Combine classes with their probabilities
             emotion_probs = [{'emotion': cls, 'probability': prob * 100} for cls, prob in zip(classes, proba)]
             
-            # 1. Filter out emotions with probability <= 40%
-            filtered_emotions = [ep for ep in emotion_probs if ep['probability'] > 40.0]
-            
-            # 2. Sort remaining emotions from highest to lowest probability
-            sorted_emotions = sorted(filtered_emotions, key=lambda x: x['probability'], reverse=True)
+            # Top 3 emotions dikhao
+            sorted_emotions = sorted(emotion_probs, key=lambda x: x['probability'], reverse=True)[:3]
 
         # Result Box
         if not sorted_emotions:
@@ -108,8 +105,18 @@ if st.button("Detect Emotion"):
                 emo = ep['emotion']
                 conf = round(ep['probability'], 1)
                 st.markdown(f"""
-                <div style="background:{COLOR_MAP[emo]};border:1px solid {BORDER_MAP[emo]};border-radius:12px;padding:16px;margin-top:12px;">
-                    <h2 style="color:#000000; font-size:1.4rem; margin:0; font-weight:600;">{EMOJI_MAP[emo]} {emo.capitalize()}: {conf}%</h2>
+                <div style="background:{COLOR_MAP[emo]};
+                            border:2px solid {BORDER_MAP[emo]};
+                            border-radius:12px;
+                            padding:18px 24px;
+                            margin-top:12px;
+                            display:flex;
+                            align-items:center;
+                            gap:10px;">
+                    <h2 style="color:#1A1A1A !important; 
+                               font-size:1.4rem; 
+                               margin:0; 
+                               font-weight:700;">{EMOJI_MAP[emo]} {emo.capitalize()}: {conf}%</h2>
                 </div>
                 """, unsafe_allow_html=True)
 
