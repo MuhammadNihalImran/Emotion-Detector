@@ -95,7 +95,7 @@ if st.button("Detect Emotion"):
         if not sorted_emotions:
             st.markdown(f"""
             <div style="background:#E3F2FD;border:1px solid #1565C0;border-radius:12px;padding:24px;text-align:center;margin-top:16px;">
-                <h1 style="color:#000000; font-size:1.5rem; font-weight:700; margin:0;">No strong emotion detected</h1>
+                <h1 style="color:#1A1A1A !important; font-size:1.5rem; font-weight:700; margin:0;">No strong emotion detected</h1>
             </div>
             """, unsafe_allow_html=True)
         else:
